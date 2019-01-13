@@ -14,17 +14,23 @@ public class NewYearChaos {
     static void minimumBribes(int[] person) {
         int bribe = 0, maxN;
         int len = person.length;
+        boolean chaotic = false;
         for (int i = 0; i < len; i++) {
             if (person[i] - (i + 1) > 2) {
-                System.out.println("Too chaotic");
+                chaotic = true;
                 break;
-            }
-            maxN = Math.max(0, person[i] - 2);
-            for (int j = maxN; j < i; j++) {
-                if (person[j] > person[i]) bribe++;
+            } else {
+                maxN = Math.max(0, person[i] - 2);
+                for (int j = maxN; j < i; j++) {
+                    if (person[j] > person[i]) bribe++;
+                }
             }
         }
-        if (bribe > 0) System.out.println(bribe);
+        if(chaotic) {
+            System.out.println("Too chaotic");
+        } else{
+            System.out.println(bribe);
+        }
     }
 
     private static final Scanner scanner = new Scanner(System.in);
